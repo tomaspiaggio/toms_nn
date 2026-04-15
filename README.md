@@ -12,5 +12,8 @@ I like reminding myself how simple the underlying technologies that drive the AI
 - [ ] layer_operations
 - [ ] loss
 - [ ] optimizers
-- [ ] normalization
-- [ ] testing with real data
+- [ ] layer normalization
+- [ ] batch normalization
+- [ ] dropout?
+- [ ] testing with real data (xor / mnist)
+- [ ] serialization / deserialization?
