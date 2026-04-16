@@ -1,5 +1,7 @@
+#include "include/activation.h"
 #include "include/loss.h"
 #include "include/tensor_math.h"
+#include "include/layer_operations.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -161,6 +163,39 @@ int test_cross_entropy_loss() {
     return 0;
 }
 
+
+int test_forward_pass() {
+    // xor test
+    Tensor* input = create_tensor(2, (unsigned int[]){1, 2});
+    Tensor* output = create_tensor(2, (unsigned int[]){1, 2});
+
+    // TODO: i should do random data for the weights and biases
+    Tensor* layer1_weights = create_tensor(2, (unsigned int[]){2, 10});
+    Tensor* layer1_biases = create_tensor(2, (unsigned int[]){1, 10});
+    Tensor* layer1_outputs = create_tensor(2, (unsigned int[]){2, 10});
+
+    int result = linear_forward(input, layer1_weights, layer1_biases, layer1_outputs);
+
+    if (result != 0) {
+        return result;
+    }
+
+    relu(layer1_outputs, layer1_outputs);
+
+    Tensor* layer2_weights = create_tensor(2, (unsigned int[]){10, 2});
+    Tensor* layer2_biases = create_tensor(2, (unsigned int[]){2, 1});
+    Tensor* layer2_outputs = create_tensor(2, (unsigned int[]){10, 2});
+
+    result = linear_forward(layer1_outputs, layer2_weights, layer2_biases, layer2_outputs);
+
+    if (result != 0) {
+        return result;
+    }
+
+    softmax(layer2_outputs, output);
+
+    return 0;
+}
 
 int main() {
     int result = 0;
