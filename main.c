@@ -1,5 +1,7 @@
+#include "include/loss.h"
 #include "include/tensor_math.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int test_matmul() {
     unsigned int shape[] = {2, 2};
@@ -101,6 +103,62 @@ int test_cross_entropy_loss() {
     // [[1, 0, 0, 0],
     //  [0, 0, 1, 0],
     //  [0, 0, 0, 1]]
+
+    printf("about to create targets\n");
+    Tensor* targets = create_tensor(2, (unsigned int[]){3, 4});
+    if (!targets) {
+        return 1;
+    }
+
+    printf("created targets\n");
+
+    double targets_data[12] = {
+        1, 0, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1
+    };
+
+    for (unsigned int i = 0; i < 12; i++) {
+        targets->data[i] = targets_data[i];
+    }
+
+    Tensor* predictions = create_tensor(2, (unsigned int[]){3, 4});
+    if (!predictions) {
+        delete_tensor(targets);
+        return 1;
+    }
+
+    printf("created predictions\n");
+
+    double predictions_data[12] = {
+        .7, .1, .1, .1,
+        .1, .2, .6, .1,
+        .2, .2, .2, .4
+    };
+
+    for (unsigned int i = 0; i < 12; i++) {
+        predictions->data[i] = predictions_data[i];
+    }
+
+    printf("about to calculate cross entropy loss\n");
+    double result = cross_entropy_loss(predictions, targets);
+
+    printf("the cross_entropy_loss for the following tensors\n\n");
+
+    printf("predictions\n");
+    print_tensor(predictions);
+
+    printf("\n\n");
+
+    printf("targets\n");
+    print_tensor(targets);
+
+    printf("\n\nis = %f", result);
+
+    delete_tensor(predictions);
+    delete_tensor(targets);
+
+    return 0;
 }
 
 

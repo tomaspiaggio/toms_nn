@@ -36,6 +36,5 @@ Tensor* create_tensor(int ndim, unsigned int* shape);
 void delete_tensor(Tensor* t);
 void print_tensor(Tensor* t);
 unsigned int tensor_data_length(Tensor* t);
-void copy_tensor_except_data(Tensor* src, Tensor* dest);
 
 #endif

@@ -4,6 +4,6 @@
 #include "tensor.h"
 
 double cross_entropy_loss(Tensor* predictions, Tensor* targets);
-double cross_entropy_loss_backward(Tensor* predictions, Tensor* targets, Tensor* grad);
+int softmax_cross_entropy_backward(Tensor* predictions, Tensor* targets, Tensor* grad);
 
 #endif
