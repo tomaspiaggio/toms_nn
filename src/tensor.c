@@ -1,6 +1,6 @@
+#include "../include/tensor.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/tensor.h"
 
 Tensor* create_tensor(int ndim, unsigned int* shape) {
     Tensor* t = malloc(sizeof(Tensor));

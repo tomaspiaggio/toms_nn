@@ -1,4 +1,4 @@
-#include "../include/tensor.h"
+#include "../include/activation.h"
 #include <math.h>
 
 void relu(Tensor *in, Tensor *out) {

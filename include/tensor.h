@@ -1,5 +1,8 @@
 #define MAX_DIMS 8
 
+#ifndef TENSOR_H
+#define TENSOR_H
+
 typedef struct {
     unsigned int ndim;
     unsigned int shape[MAX_DIMS];
@@ -34,3 +37,5 @@ void delete_tensor(Tensor* t);
 void print_tensor(Tensor* t);
 unsigned int tensor_data_length(Tensor* t);
 void copy_tensor_except_data(Tensor* src, Tensor* dest);
+
+#endif
